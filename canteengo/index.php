@@ -19,7 +19,7 @@
             overflow: hidden;
         }
 
-        /* Ornamen Cahaya Background (Biar gak polos) */
+        /* Ornamen Cahaya Background */
         .bg-shape1 { position: absolute; top: -100px; left: -100px; width: 450px; height: 450px; background: rgba(46, 125, 50, 0.08); border-radius: 50%; filter: blur(60px); z-index: -1; }
         .bg-shape2 { position: absolute; bottom: -150px; right: -100px; width: 550px; height: 550px; background: rgba(245, 124, 0, 0.08); border-radius: 50%; filter: blur(80px); z-index: -1; }
 
@@ -49,7 +49,6 @@
     </style>
 </head>
 <body>
-    <!-- Ornamen Background -->
     <div class="bg-shape1"></div>
     <div class="bg-shape2"></div>
 
