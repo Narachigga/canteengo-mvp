@@ -1,15 +1,26 @@
 <?php 
-include 'koneksi.php'; 
-$antrean_aktif = isset($_GET['antrean']) ? $_GET['antrean'] : '';
+require_once __DIR__ . '/koneksi.php';
+/** @var mysqli $conn */
+$antrean_aktif = '';
+$sql_error = '';
+
+if (isset($_GET['antrean'])) {
+    $antrean_aktif = mysqli_real_escape_string($conn, $_GET['antrean']);
+}
 
 if (isset($_POST['pesan'])) {
-    $menu = $_POST['menu']; 
+    $menu = mysqli_real_escape_string($conn, $_POST['menu']); 
     $kode = "#" . rand(100, 999); 
-    mysqli_query($conn, "INSERT INTO antrean_pesanan (nomor_antrean, nama_menu, status_pesanan) VALUES ('$kode', '$menu', 'Waiting')");
-    header("Location: mahasiswa.php?antrean=" . urlencode($kode));
-    exit();
+    $insert = mysqli_query($conn, "INSERT INTO antrean_pesanan (nomor_antrean, nama_menu, status_pesanan) VALUES ('$kode', '$menu', 'Waiting')");
+    if (!$insert) {
+        $sql_error = mysqli_error($conn);
+    } else {
+        header("Location: mahasiswa.php?antrean=" . urlencode($kode));
+        exit();
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -219,7 +230,12 @@ if (isset($_POST['pesan'])) {
         <?php else: 
             // HALAMAN TRACKER STATUS & RATING
             $q = mysqli_query($conn, "SELECT status_pesanan FROM antrean_pesanan WHERE nomor_antrean = '$antrean_aktif' ORDER BY id DESC LIMIT 1");
-            $data = mysqli_fetch_assoc($q);
+            if (!$q) {
+                $sql_error = mysqli_error($conn);
+                $data = null;
+            } else {
+                $data = mysqli_fetch_assoc($q);
+            }
             $status = $data ? $data['status_pesanan'] : 'Waiting';
         ?>
             <div class="tracker-box">

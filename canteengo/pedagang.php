@@ -1,9 +1,13 @@
 <?php 
-include 'koneksi.php'; 
+require_once __DIR__ . '/koneksi.php';
+/** @var mysqli $conn */
 if (isset($_GET['id']) && isset($_GET['status'])) {
     $id = (int)$_GET['id'];
     $st = mysqli_real_escape_string($conn, $_GET['status']);
-    mysqli_query($conn, "UPDATE antrean_pesanan SET status_pesanan = '$st' WHERE id = $id");
+    $update = mysqli_query($conn, "UPDATE antrean_pesanan SET status_pesanan = '$st' WHERE id = $id");
+    if (!$update) {
+        die('Query gagal: ' . mysqli_error($conn));
+    }
     header("Location: pedagang.php");
     exit();
 }
