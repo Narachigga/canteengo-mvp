@@ -13,11 +13,12 @@ if (isset($_GET['id']) && isset($_GET['status'])) {
 <head>
     <meta charset="UTF-8">
     <title>CanteenGO - Dapur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #edf2f7; padding: 40px 20px; display: flex; justify-content: center; margin: 0; }
+        body { font-family: 'Poppins', sans-serif; background-color: #edf2f7; padding: 40px 20px; display: flex; justify-content: center; margin: 0; }
         .tablet-frame { width: 100%; max-width: 850px; background: white; border-radius: 24px; padding: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 8px solid #2e7d32; }
         .header-dapur { margin-bottom: 30px; border-bottom: 2px solid #f0f4f8; padding-bottom: 15px; }
-        .header-dapur h2 { color: #1a202c; font-size: 26px; margin-bottom: 5px; }
+        .header-dapur h2 { color: #1a202c; font-size: 26px; margin-bottom: 5px; font-weight: 800; }
         .order-item { display: flex; justify-content: space-between; align-items: center; padding: 20px 25px; border: 1px solid #e2e8f0; border-radius: 16px; margin-bottom: 15px; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
         .time-badge { padding: 6px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; background: #e2e8f0; color: #4a5568; display: inline-block; margin-bottom: 8px; }
         .btn-action { padding: 14px 24px; border-radius: 12px; font-weight: 800; font-size: 15px; color: white; text-decoration: none; display: inline-block; transition: 0.2s; }
